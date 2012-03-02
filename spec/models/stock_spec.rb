@@ -21,4 +21,9 @@ describe Stock do
     it { should_not allow_value(val).for(:shares) }
   end
 
+  describe '#original_value' do
+    subject { build(:stock, shares: 10, price: 2) }
+
+    its(:original_value) { should == 20 }
+  end
 end

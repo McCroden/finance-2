@@ -10,4 +10,9 @@ class Stock < ActiveRecord::Base
     validates numeric, :presence => true, :format => /\A\d+(\.\d*)?\z/
   end
 
+
+  def original_value
+    shares * price
+  end
+
 end
