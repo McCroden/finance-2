@@ -30,6 +30,13 @@ describe Stock do
     its(:original_value) { should == 20 }
     its(:current_value)  { should == 50 }
     its(:roi)            { should == 30 }
+
+    context 'the market price is not known yet' do
+      before { subject.stub(:current_price => nil) }
+
+      its(:current_value) { should be_nil }
+      its(:roi)           { should be_nil }
+    end
   end
 
 end

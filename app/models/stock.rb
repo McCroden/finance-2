@@ -10,20 +10,20 @@ class Stock < ActiveRecord::Base
     validates numeric, :presence => true, :format => /\A\d+(\.\d*)?\z/
   end
 
-  def roi
-    current_value - original_value
-  end
-
   def original_value
     shares * price
   end
 
+  def roi
+    current_value - original_value rescue nil
+  end
+
   def current_value
-    shares * current_price
+    shares * current_price rescue nil
   end
 
   def current_price
-    Market.get_price_of(symbol)
+    MarketPrice.get(symbol)
   end
 
 end
