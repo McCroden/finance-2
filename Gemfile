@@ -5,6 +5,7 @@ gem 'rails'
 gem 'sqlite3'
 
 gem 'delayed_job_active_record'
+gem 'devise'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'simple_form'

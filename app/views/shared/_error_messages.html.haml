@@ -1,0 +1,8 @@
+- if target.errors.any?
+  .alert.alert-error
+    %h4.alert-heading
+      = pluralize(target.errors.count, "error")
+      prohibited this record from being saved:
+    %ul
+      = list_of(target.errors.full_messages) do |msg|
+        = msg
