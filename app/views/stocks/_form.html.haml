@@ -1,0 +1,10 @@
+= simple_form_for([:portfolio, @stock]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :symbol
+    = f.input :shares
+    = f.input :price
+
+  .form-actions
+    = f.button :submit, "Add to My Portfolio"

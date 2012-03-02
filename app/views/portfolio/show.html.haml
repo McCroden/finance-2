@@ -1,0 +1,10 @@
+%h1 My Portfolio
+
+%ul.stocks
+  - @stocks.each do |stock|
+    = content_tag_for(:li, stock) do
+      = stock.symbol
+      = link_to 'Edit', edit_portfolio_stock_path(stock)
+      = button_to 'Remove', [:portfolio, stock], :method => :delete
+
+= link_to 'Add a Stock', new_portfolio_stock_path

@@ -7,3 +7,5 @@ en:
       user:
         email: 'Email Address'
         password_digest: 'Password'
+      stock:
+        symbol: 'Ticker Symbol'
