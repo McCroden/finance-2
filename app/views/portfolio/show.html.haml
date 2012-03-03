@@ -4,14 +4,16 @@
   %thead
     %tr
       %th Ticker Symbol
+      %th Original Value
       %th Current Value
       %th ROI
       %th Actions
   - @stocks.each do |stock|
     = content_tag_for(:tr, stock) do
       %td= stock.symbol
-      %td= stock.current_value
-      %td= stock.roi
+      %td= currency(stock.original_value)
+      %td= currency(stock.current_value)
+      %td= currency(stock.roi)
       %td
         = link_to 'Edit', edit_portfolio_stock_path(stock), :class => 'btn'
         = link_to 'Remove', [:portfolio, stock], :method => :delete, :class => 'btn btn-danger'
