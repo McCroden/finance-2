@@ -39,4 +39,13 @@ describe Stock do
     end
   end
 
+  describe '#current_price' do
+    subject { build(:stock) }
+
+    before { MarketPrice.should_receive(:get).with(subject.symbol) }
+
+    # just call the method with the expectations above
+    specify { subject.current_price }
+  end
+
 end
