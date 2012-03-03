@@ -1,18 +1,20 @@
 %h1 My Portfolio
 
-%table.table.table-striped
+%table.table.table-striped.table-bordered
   %thead
     %tr
       %th Ticker Symbol
-      %th Original Value
-      %th Current Value
+      %th Shares
+      %th Price Paid
+      %th Market Price
       %th ROI
       %th Actions
   - @stocks.each do |stock|
     = content_tag_for(:tr, stock) do
       %td= stock.symbol
-      %td= currency(stock.original_value)
-      %td= currency(stock.current_value)
+      %td= stock.shares
+      %td= currency(stock.price)
+      %td= currency(stock.current_price)
       %td= currency(stock.roi)
       %td
         = link_to 'Edit', edit_portfolio_stock_path(stock), :class => 'btn'
