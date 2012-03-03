@@ -39,7 +39,7 @@ describe 'adding, editing, listing stocks' do
 
     it 'should allow removing a stock' do
       within "#stock_#{msft.id}" do |scope|
-        scope.click_button 'Remove'
+        scope.click_link 'Remove', :method => :delete
       end
       response.should contain("#{msft.symbol} was removed.")
       Stock.exists?(msft.id).should be_false
