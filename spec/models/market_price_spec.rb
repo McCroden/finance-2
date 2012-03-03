@@ -7,6 +7,43 @@ describe MarketPrice do
   it { should validate_presence_of(:symbol) }
   it { should validate_uniqueness_of(:symbol) }
 
+  describe '.get' do
+    let(:symbol) { market_price.symbol }
+
+    before do
+      MarketPrice.should_receive(:find_by_symbol).with(symbol)
+        .and_return(found)
+    end
+
+    context 'in the db' do
+      let(:found) { market_price }
+
+      context 'and fresh' do
+        before { market_price.should_receive(:stale?).and_return(false) }
+        specify { MarketPrice.get(symbol).should == market_price.price }
+      end
+
+      context 'and stale' do
+        before do
+          market_price.should_receive(:stale?).and_return(true)
+          market_price.should_receive(:queue_update!)
+        end
+        specify { MarketPrice.get(symbol).should == market_price.price }
+      end
+    end
+
+    context 'not in db yet' do
+      let(:found) { nil }
+
+      before do
+        MarketPrice.should_receive(:create!).with(symbol: symbol)
+          .and_return(market_price)
+      end
+
+      specify { MarketPrice.get(symbol).should == market_price.price }
+    end
+  end
+
   describe '#stale?' do
     before { market_price.stub(:updated_at => age.ago) }
 
