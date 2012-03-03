@@ -19,13 +19,16 @@ describe MarketPrice do
       let(:found) { market_price }
 
       context 'and fresh' do
-        before { market_price.should_receive(:stale?).and_return(false) }
+        before do
+          market_price.stub(:stale? => false)
+          market_price.should_not_receive(:queue_update!)
+        end
         specify { MarketPrice.get(symbol).should == market_price.price }
       end
 
       context 'and stale' do
         before do
-          market_price.should_receive(:stale?).and_return(true)
+          market_price.stub(:stale? => true)
           market_price.should_receive(:queue_update!)
         end
         specify { MarketPrice.get(symbol).should == market_price.price }
