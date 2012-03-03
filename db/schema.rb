@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302132857) do
+ActiveRecord::Schema.define(:version => 20120302223537) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20120302132857) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "market_prices", :force => true do |t|
+    t.string   "symbol",                                    :null => false
+    t.decimal  "price",      :precision => 12, :scale => 6
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "market_prices", ["symbol"], :name => "index_market_prices_on_symbol", :unique => true
 
   create_table "stocks", :force => true do |t|
     t.integer  "user_id",                                   :null => false

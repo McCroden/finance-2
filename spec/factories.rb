@@ -12,4 +12,9 @@ FactoryGirl.define do
     price  { 50 }
   end
 
+  factory :market_price do
+    symbol { 'AAPL' }
+    price  { 80 }
+  end
+
 end
