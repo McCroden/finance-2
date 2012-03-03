@@ -7,6 +7,16 @@ describe MarketPrice do
   it { should validate_presence_of(:symbol) }
   it { should validate_uniqueness_of(:symbol) }
 
+  describe 'creation' do
+    let(:market_price) { build(:market_price) }
+
+    before { market_price.should_receive(:queue_update!) }
+
+    it 'should enqueue a job to update itself upon creation' do
+      market_price.save!
+    end
+  end
+
   describe '.get' do
     let(:symbol) { market_price.symbol }
 

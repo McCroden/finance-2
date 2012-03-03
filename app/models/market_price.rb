@@ -4,6 +4,8 @@ class MarketPrice < ActiveRecord::Base
 
   STALE_THRESHOLD = 10.minutes
 
+  after_create :queue_update!
+
   def self.get(symbol)
     if mp = find_by_symbol(symbol)
       mp.queue_update! if mp.stale?
