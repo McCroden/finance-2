@@ -11,7 +11,7 @@ describe 'adding, editing, listing stocks' do
       click_link 'Add a Stock'
       fill_in 'Ticker Symbol', with: 'AAPL'
       fill_in 'Shares',        with: '1000'
-      fill_in 'Price',         with: '100'
+      fill_in 'Price Paid',    with: '100'
       click_button 'Add to My Portfolio'
       response.should contain('AAPL was added.')
     end

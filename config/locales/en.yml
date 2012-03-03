@@ -9,3 +9,4 @@ en:
         password_digest: 'Password'
       stock:
         symbol: 'Ticker Symbol'
+        price: 'Price Paid'
