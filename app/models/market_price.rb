@@ -18,6 +18,8 @@ class MarketPrice < ActiveRecord::Base
   end
 
   def queue_update!
+    job = UpdateMarketPriceFromGoogle.new(symbol)
+    Delayed::Job.enqueue(job)
   end
 
 end

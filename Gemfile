@@ -7,6 +7,7 @@ gem 'sqlite3'
 gem 'delayed_job_active_record'
 gem 'devise'
 gem 'haml-rails'
+gem 'httparty'
 gem 'jquery-rails'
 gem 'simple_form'
 
@@ -14,6 +15,7 @@ gem 'rspec-rails', :group => [:test, :development]
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'fakeweb'
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'webrat'

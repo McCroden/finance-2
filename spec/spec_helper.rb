@@ -11,6 +11,12 @@ RSpec.configure do |config|
   # for less verbose FactoryGirl usage
   config.include Factory::Syntax::Methods
 
+  FakeWeb.allow_net_connect = false
+
+  def fixture(*path_parts)
+    Rails.root.join('spec', 'fixtures', *path_parts)
+  end
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
