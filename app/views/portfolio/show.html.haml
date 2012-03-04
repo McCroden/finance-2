@@ -1,5 +1,16 @@
 %h1 My Portfolio
 
+%table.table.table-striped.table-bordered.stats
+  %tr
+    %th Original Value
+    %td= currency(@portfolio.original_value)
+  %tr
+    %th Current Value
+    %td= currency(@portfolio.current_value)
+  %tr
+    %th ROI
+    %td= currency(@portfolio.roi)
+
 %table.table.table-striped.table-bordered
   %thead
     %tr
