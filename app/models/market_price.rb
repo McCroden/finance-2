@@ -16,7 +16,7 @@ class MarketPrice < ActiveRecord::Base
   end
 
   def stale?
-    updated_at < STALE_THRESHOLD.ago
+    price.nil? or updated_at < STALE_THRESHOLD.ago
   end
 
   def queue_update!

@@ -60,14 +60,19 @@ describe MarketPrice do
   describe '#stale?' do
     before { market_price.stub(:updated_at => age.ago) }
 
-    context '=> true' do
+    context 'updated_at == old' do
       let(:age) { MarketPrice::STALE_THRESHOLD + 1.minute }
       specify { market_price.should be_stale }
     end
 
-    context '=> false' do
+    context 'updated_at == recent' do
       let(:age) { MarketPrice::STALE_THRESHOLD - 1.minute }
       specify { market_price.should_not be_stale }
+
+      context 'price == nil, like on creation' do
+        before { market_price.stub(:price => nil) }
+        specify { market_price.should be_stale }
+      end
     end
   end
 end
