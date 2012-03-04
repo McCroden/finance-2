@@ -9,7 +9,7 @@
       %th Market Price
       %th ROI
       %th Actions
-  - @stocks.each do |stock|
+  - @portfolio.each do |stock|
     = content_tag_for(:tr, stock) do
       %td= stock.symbol
       %td= stock.shares

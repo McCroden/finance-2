@@ -1,7 +1,7 @@
 class PortfolioController < ApplicationController
 
   def show
-    @stocks = current_user.stocks
+    @portfolio = current_user.portfolio
   end
 
 end

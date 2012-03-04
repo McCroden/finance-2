@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :stocks
 
+  def portfolio
+    Portfolio.new(stocks)
+  end
+
 end
