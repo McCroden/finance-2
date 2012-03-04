@@ -32,4 +32,12 @@ describe Portfolio do
     its(:roi) { should == 10 }
   end
 
+  context 'with a new stock (current_price == nil)' do
+    before { subject << build(:stock) }
+
+    its(:original_value) { should_not be_nil }
+    its(:current_value)  { should     be_nil }
+    its(:roi)            { should     be_nil }
+  end
+
 end
