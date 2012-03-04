@@ -9,7 +9,7 @@ class Portfolio < SimpleDelegator
 
   def sum_on(attribute)
     __getobj__.sum(&attribute)
-  rescue TypeError
+  rescue TypeError, NoMethodError
     # the values might be nil
     nil
   end
