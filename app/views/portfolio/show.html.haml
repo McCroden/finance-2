@@ -1,15 +1,15 @@
 %h1 My Portfolio
 
-%table.table.table-striped.table-bordered.stats
+%table.table.table-striped.table-bordered
   %tr
     %th Original Value
-    %td= currency(@portfolio.original_value)
-  %tr
+    %td#portfolio_original_value= currency(@portfolio.original_value)
+  %tr.currency_value
     %th Current Value
-    %td= currency(@portfolio.current_value)
-  %tr
+    %td#portfolio_current_value= currency(@portfolio.current_value)
+  %tr.roi
     %th ROI
-    %td= currency(@portfolio.roi)
+    %td#portfolio_roi= currency(@portfolio.roi)
 
 %table.table.table-striped.table-bordered
   %thead

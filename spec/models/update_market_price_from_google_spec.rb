@@ -35,14 +35,7 @@ describe UpdateMarketPriceFromGoogle do
   describe '#query_google' do
     let(:job) { UpdateMarketPriceFromGoogle.new('AAPL') }
 
-    before do
-      aapl_xml = fixture('AAPL.xml').read
-      FakeWeb.register_uri(:get,
-                           'http://www.google.com/ig/api?stock=AAPL',
-                           :body => aapl_xml,
-                           :content_length => aapl_xml.length,
-                           :content_type => 'text/xml')
-    end
+    before { mock_google('AAPL') }
 
     it 'should read the latest price from the retrieved data' do
       job.send(:query_google).should == '543.90'
