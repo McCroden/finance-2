@@ -21,10 +21,9 @@ describe Stock do
     it { should_not allow_value(val).for(:shares) }
   end
 
+  subject { build(:stock, shares: 10, price: 2) }
 
   describe '#original_value, #current_value, #roi' do
-    subject { build(:stock, shares: 10, price: 2) }
-
     before { subject.stub(:current_price => 5) }
 
     its(:original_value) { should == 20 }
@@ -40,8 +39,6 @@ describe Stock do
   end
 
   describe '#current_price' do
-    subject { build(:stock) }
-
     before { MarketPrice.should_receive(:get).with(subject.symbol) }
 
     # just call the method with the expectations above
