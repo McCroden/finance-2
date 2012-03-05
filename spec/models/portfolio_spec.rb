@@ -40,4 +40,19 @@ describe Portfolio do
     its(:roi)            { should     be_nil }
   end
 
+  context 'with no stocks yet' do
+    let(:stocks) { [] }
+
+    its(:original_value) { should be_zero }
+    its(:current_value)  { should be_zero }
+    its(:roi)            { should be_zero }
+  end
+
+  context 'with just one (new) stock' do
+    let(:stocks) { [build(:stock)] }
+
+    its(:original_value) { should_not be_zero }
+    its(:current_value)  { should be_nil }
+    its(:roi)            { should be_nil }
+  end
 end

@@ -8,7 +8,8 @@ class Portfolio < SimpleDelegator
   private
 
   def sum_on(attribute)
-    __getobj__.sum(&attribute)
+    stocks = __getobj__
+    stocks.any? ? stocks.map(&attribute).reduce(:+) : 0
   rescue TypeError, NoMethodError
     # the values might be nil
     nil
