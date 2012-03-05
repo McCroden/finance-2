@@ -20,7 +20,7 @@ describe User do
 
   it { should have_many :stocks }
 
-  describe '.portfolio' do
+  describe '#portfolio' do
     let(:portfolio) { double(:portfolio) }
 
     before { Portfolio.should_receive(:new).with([])
