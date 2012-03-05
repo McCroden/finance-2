@@ -4,8 +4,8 @@ Finance::Application.routes.draw do
 
   root :to => 'portfolio#show'
 
-  resource :portfolio, :only => [:show], :controller => 'Portfolio' do
-    resources :stocks, :except => [:index, :show]
+  resource :portfolio, only: [:show], controller: 'Portfolio' do
+    resources :stocks, except: [:index, :show]
   end
 
 end

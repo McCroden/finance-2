@@ -7,9 +7,9 @@ describe UpdateMarketPriceFromGoogle do
     let(:job) { UpdateMarketPriceFromGoogle.new(market_price.symbol) }
 
     before do
-      MarketPrice.stub(:find_by_symbol => market_price)
-      market_price.stub(:stale? => staleness)
-      job.stub(:query_google => 10)
+      MarketPrice.stub(find_by_symbol: market_price)
+      market_price.stub(stale?: staleness)
+      job.stub(query_google: 10)
     end
 
     context 'still stale' do

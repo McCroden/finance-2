@@ -1,6 +1,6 @@
 class MarketPrice < ActiveRecord::Base
 
-  validates :symbol, :presence => true, :uniqueness => true
+  validates :symbol, presence: true, uniqueness: true
 
   STALE_THRESHOLD = 10.minutes
 

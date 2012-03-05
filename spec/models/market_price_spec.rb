@@ -30,7 +30,7 @@ describe MarketPrice do
 
       context 'and fresh' do
         before do
-          market_price.stub(:stale? => false)
+          market_price.stub(stale?: false)
           market_price.should_not_receive(:queue_update!)
         end
         specify { MarketPrice.get(symbol).should == market_price.price }
@@ -38,7 +38,7 @@ describe MarketPrice do
 
       context 'and stale' do
         before do
-          market_price.stub(:stale? => true)
+          market_price.stub(stale?: true)
           market_price.should_receive(:queue_update!)
         end
         specify { MarketPrice.get(symbol).should == market_price.price }
@@ -58,7 +58,7 @@ describe MarketPrice do
   end
 
   describe '#stale?' do
-    before { market_price.stub(:updated_at => age.ago) }
+    before { market_price.stub(updated_at: age.ago) }
 
     context 'updated_at == old' do
       let(:age) { MarketPrice::STALE_THRESHOLD + 1.minute }
@@ -70,7 +70,7 @@ describe MarketPrice do
       specify { market_price.should_not be_stale }
 
       context 'price == nil, like on creation' do
-        before { market_price.stub(:price => nil) }
+        before { market_price.stub(price: nil) }
         specify { market_price.should be_stale }
       end
     end
